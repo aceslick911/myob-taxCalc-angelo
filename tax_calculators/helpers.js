@@ -8,9 +8,6 @@ const  RESULT_CONSTANTS = {
   TAXABLE:{
     CODE:"TAXABLE"
   },
-  // TAX_BRACKET_FOUND:{
-  //   CODE:"BRACKET_VALID"
-  // }
 };
 
 module.exports = {
@@ -36,13 +33,7 @@ module.exports = {
 
     return_values:{
       isTaxable:(CODE)=>CODE === RESULT_CONSTANTS.TAXABLE.CODE,
-
-      // INCOME_SELECTION_VALID:(ANNUAL_INCOME,INCOME_IS_WITHIN_RANGE)=>({
-      //   CODE:RESULT_CONSTANTS.ACCEPTED.CODE,
-      //   ANNUAL_INCOME,
-      //   INCOME_IS_WITHIN_RANGE
-      // }),
-
+      
       TAX_BRACKET_APPLIES:({TAX_BRACKET, annual_income, tax_payable_for_bracket})=>({
         CODE:RESULT_CONSTANTS.TAXABLE.CODE,
         BRACKET: TAX_BRACKET,
