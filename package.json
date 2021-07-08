@@ -5,8 +5,11 @@
   "main": "myob.js",
   "scripts": {
     "start": "node myob.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --no-watchman"
   },
   "author": "Angelo Perera",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "jest": "^27.0.6"
+  }
 }

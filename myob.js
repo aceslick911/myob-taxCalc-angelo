@@ -1,13 +1,13 @@
 const {transform}= require("./tax_calculators/helpers");
 
 const { au_fy2020_2021 } = require("./tax_calculators/au/2020_2021/index");
+
+
 const income_calculators = {    
   au:{
     fy2020_2021: au_fy2020_2021()
   }
 }
-
-
   
 const paySlipForEmployee = (employee, income_calculator) =>{
 
@@ -45,4 +45,7 @@ const test_employee = {
   }
 }
 
-console.log ( paySlipForEmployee(test_employee, income_calculators.au.fy2020_2021.CALC) );
+module.exports = {
+  paySlipForEmployee,
+  income_calculators
+}
