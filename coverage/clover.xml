@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1625748658479" clover="3.2.0">
-  <project timestamp="1625748658479" name="All files">
+<coverage generated="1625749029838" clover="3.2.0">
+  <project timestamp="1625749029839" name="All files">
     <metrics statements="203" coveredstatements="203" conditionals="18" coveredconditionals="18" methods="9" coveredmethods="7" elements="230" coveredelements="228" complexity="0" loc="203" ncloc="203" packages="3" files="3" classes="3"/>
     <package name="myob">
       <metrics statements="40" coveredstatements="40" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
