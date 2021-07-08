@@ -5,8 +5,7 @@
   "main": "myob.js",
   "scripts": {
     "prebuild": "rimraf dist",
-    "build": "tsc",
-    
+    "build": "tsc && chmod +x dist/myob.js",    
     "test": "jest __tests__/ --no-watchman",
     "lint": "eslint myob.ts"
   },
@@ -27,5 +26,8 @@
     "rimraf": "^3.0.2",
     "ts-node": "^10.0.0",
     "typescript": "^4.3.5"
+  },
+  "dependencies": {
+    "yargs": "^17.0.1"
   }
 }

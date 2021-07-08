@@ -1,4 +1,10 @@
 #!/usr/bin/env node
+const yargs = require('yargs/yargs')
+const { hideBin } = require('yargs/helpers')
+const argv = yargs(hideBin(process.argv)).argv
+
+const employeeName = argv._[0];
+const annual_income = argv._[1];
 
 import {transform} from "./tax_calculators/helpers";
 
@@ -48,3 +54,9 @@ export const test_employee = {
   }
 }
 
+console.log(
+    paySlipForEmployee({
+      name: employeeName,
+      annual_income
+    }, income_calculators.au.fy2020_2021.CALC)
+);
