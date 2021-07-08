@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import {transform} from "./tax_calculators/helpers";
 
 import { au_fy2020_2021 }  from "./tax_calculators/au/2020_2021";
