@@ -1,6 +1,7 @@
 import {transform} from "./tax_calculators/helpers";
 
 import { au_fy2020_2021 }  from "./tax_calculators/au/2020_2021/index";
+import { Employee,  TaxCalculatorMethods, taxPayslip } from "./tax_calculators/types";
 
 
 export const income_calculators = {    
@@ -9,7 +10,7 @@ export const income_calculators = {
   }
 }
   
-export const paySlipForEmployee = (employee, income_calculator) =>{
+export const paySlipForEmployee = (employee:Employee, income_calculator:TaxCalculatorMethods):taxPayslip =>{
 
   const {ANNUAL_INCOME_TAX} = income_calculator;
   const employee_annual_tax  = ANNUAL_INCOME_TAX(employee.annual_income);
@@ -34,7 +35,7 @@ export const paySlipForEmployee = (employee, income_calculator) =>{
   return output;
 }
 
-const test_employee = {
+export const test_employee = {
   name: "Mary Song",
   annual_income: 60000,
 

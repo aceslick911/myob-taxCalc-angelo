@@ -1,5 +1,5 @@
 
-import { au_fy2020_2021 }  from "../dist/myob"
+import { au_fy2020_2021 }  from "../tax_calculators/au/2020_2021"
 
 describe("Australian Tax tables 2020-2021",()=>{
   const tax_calculator = au_fy2020_2021();

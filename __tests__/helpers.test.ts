@@ -1,7 +1,8 @@
-import helpers from "../dist/tax_calculators/helpers"
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import {RESULT_CONSTANTS, shared, transform} from "../tax_calculators/helpers"
 
 describe ("helpers",()=>{
   it("transform.annual_amnt_to_monthly_amnt",()=>{
-    expect(helpers.transform.annual_amnt_to_monthly_amnt({annual_amount:24})).toEqual(2);
+    expect(transform.annual_amnt_to_monthly_amnt({annual_amount:24})).toEqual(2);
   })
 })

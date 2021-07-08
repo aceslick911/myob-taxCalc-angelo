@@ -1,4 +1,4 @@
-const myob = require("./myob");
+import {income_calculators, paySlipForEmployee} from "../myob";
 
 describe("myob",()=>{
   it("Should pass for example case 'Mary Song' with 60k annual salary",()=>{
@@ -14,7 +14,7 @@ describe("myob",()=>{
       }
     }
 
-    expect(myob.paySlipForEmployee(test_employee, myob.income_calculators.au.fy2020_2021.CALC)).toEqual({
+    expect(paySlipForEmployee(test_employee, income_calculators.au.fy2020_2021.CALC)).toEqual({
       name: 'Mary Song',
       gross_monthly_income: 5000,
       monthly_income_tax: 500,

@@ -30,23 +30,23 @@ export const au_fy2020_2021: TaxCalculator = () => {
 
         // Check if annual salary value must pay tax on the bracket if it is greater than the minimum bracket value
         const { min, max, tax_income_threshold } = bracket;
-        const bracket_applicable_to_annual_income = annual_income >= min;
+        const bracket_applicable_to_annual_income = annual_income_rounded >= min;
 
         if(bracket_applicable_to_annual_income === false){
 
           return shared.return_values.TAX_BRACKET_DOES_NOT_APPLY({
             TAX_BRACKET:bracket, 
-           annual_income,
+            annual_income:annual_income_rounded,
           }
           );
 
         } else {
 
           let dollars_over_threshold = 0;
-          if(annual_income >= max) {      
+          if(annual_income_rounded >= max) {      
             dollars_over_threshold = max-tax_income_threshold;
           } else {
-            dollars_over_threshold = annual_income - tax_income_threshold;
+            dollars_over_threshold = annual_income_rounded - tax_income_threshold;
           }
           
           const tax_payable_for_bracket = dollars_over_threshold * (bracket.after_threshold_tax_cents_per_dollar / 100);
@@ -54,7 +54,7 @@ export const au_fy2020_2021: TaxCalculator = () => {
 
           return shared.return_values.TAX_BRACKET_APPLIES(            {
             TAX_BRACKET:bracket, 
-              annual_income, 
+              annual_income:annual_income_rounded, 
               tax_payable_for_bracket});
         }
       } catch (exception) {
@@ -63,8 +63,8 @@ export const au_fy2020_2021: TaxCalculator = () => {
     }
 
 
-    const AnnualIncomeTaxCalculator = (annual_income, options)=> {
-      const {bracket} = options;
+    const AnnualIncomeTaxCalculator = (annual_income)=> {
+
       const taxPaidByBracket = data_sources.tax_tables.map(bracket => BracketTaxCalculator(annual_income, bracket));
 
       const taxAmountPaidByBracket = taxPaidByBracket.map(taxBracketResult=>{
