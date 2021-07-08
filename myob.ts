@@ -1,6 +1,6 @@
 import {transform} from "./tax_calculators/helpers";
 
-import { au_fy2020_2021 }  from "./tax_calculators/au/2020_2021/index";
+import { au_fy2020_2021 }  from "./tax_calculators/au/2020_2021";
 import { Employee,  TaxCalculatorMethods, taxPayslip } from "./tax_calculators/types";
 
 

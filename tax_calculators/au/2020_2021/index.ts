@@ -17,7 +17,13 @@ export const au_fy2020_2021: TaxCalculator = () => {
     };
 
     const BracketTaxCalculator = (annual_income: ANNUAL_INCOME, bracket):TaxCalculatorReturn => {
-      try {
+
+
+      if(isNaN(annual_income)){
+        //throw new Error(`annual income provided is not a number: ${annual_income}`)
+        return shared.errors.UNEXPECTED_ERROR(`annual income provided is not a number: ${annual_income}`)
+      }
+
         // "Withholding amounts calculated as a result of applying the above formulas are rounded to the nearest dollar. 
         // Values ending in 50 cents are rounded to the next higher dollar. 
         // Do this rounding directly – that is, do not make a preliminary rounding to the nearest cent." ^1
@@ -57,9 +63,7 @@ export const au_fy2020_2021: TaxCalculator = () => {
               annual_income:annual_income_rounded, 
               tax_payable_for_bracket});
         }
-      } catch (exception) {
-        throw new Error(JSON.stringify(shared.errors.UNEXPECTED_ERROR(exception)));
-      }
+
     }
 
 
