@@ -81,7 +81,7 @@ export const au_fy2020_2021: TaxCalculator = () => {
               return 0;
 
             default:
-              throw new Error(`Unexpected code returned for tax calculation ${taxBracketResult.CODE}`);
+              throw new Error(`Unexpected code returned for tax calculation ${taxBracketResult.CODE} - ${taxBracketResult.DETAILS}`);
           }        
         });
 

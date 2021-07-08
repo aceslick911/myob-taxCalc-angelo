@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+/* eslint-disable @typescript-eslint/no-var-requires */
 const yargs = require('yargs/yargs')
 const { hideBin } = require('yargs/helpers')
 const argv = yargs(hideBin(process.argv)).argv
@@ -55,10 +56,10 @@ export const test_employee = {
 }
 
 const formattedOutput = (payslip:taxPayslip)=>{
-  console.log(`Monthly Payslip for: "${payslip.name }"
+  return `Monthly Payslip for: "${payslip.name }"
 Gross Monthly Income: $${payslip.gross_monthly_income}
 Monthly Income Tax: $${payslip.monthly_income_tax}
-Net Monthly Income: $${payslip.net_monthly_income}`)
+Net Monthly Income: $${payslip.net_monthly_income}`
 }
 
 console.log(
