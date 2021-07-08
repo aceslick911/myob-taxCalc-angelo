@@ -15,23 +15,14 @@ export const  RESULT_CONSTANTS = {
 
   export const shared = {
     errors:{
-      isError:(CODE):boolean=>CODE === RESULT_CONSTANTS.ERROR.CODE,
       UNEXPECTED_ERROR:(exception):TaxCalculatorReturn=>({
         CODE: "ERROR",
         DESC: "An unexpected calculation error occured",
         DETAILS: exception,
       }),
-
-      UNABLE_TO_FIND_TAX_BRACKET:(details):TaxCalculatorReturn=>({
-        CODE: "ERROR",
-        DESC: "No valid tax bracket was found for requested income",
-        DETAILS: details,
-      }),
-    
     },
 
     return_values :{
-      isTaxable:(CODE:ReturnCodes):boolean=>CODE === RESULT_CONSTANTS.TAXABLE.CODE,
       
       TAX_BRACKET_APPLIES:({
         TAX_BRACKET, annual_income, tax_payable_for_bracket
