@@ -54,9 +54,18 @@ export const test_employee = {
   }
 }
 
+const formattedOutput = (payslip:taxPayslip)=>{
+  console.log(`Monthly Payslip for: "${payslip.name }"
+Gross Monthly Income: $${payslip.gross_monthly_income}
+Monthly Income Tax: $${payslip.monthly_income_tax}
+Net Monthly Income: $${payslip.net_monthly_income}`)
+}
+
 console.log(
+  formattedOutput(
     paySlipForEmployee({
       name: employeeName,
       annual_income
     }, income_calculators.au.fy2020_2021.CALC)
+  )
 );
