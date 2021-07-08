@@ -1,4 +1,4 @@
-const helpers = require("./helpers");
+import helpers from "../dist/tax_calculators/helpers"
 
 describe ("helpers",()=>{
   it("transform.annual_amnt_to_monthly_amnt",()=>{
