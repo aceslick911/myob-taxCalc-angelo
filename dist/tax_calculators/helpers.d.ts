@@ -1,4 +1,4 @@
-import { TaxCalculatorReturn } from "./types";
+import { TaxBracketBase, TaxCalculatorReturn } from "./types";
 export declare const RESULT_CONSTANTS: {
     ERROR: {
         CODE: string;
@@ -9,12 +9,19 @@ export declare const RESULT_CONSTANTS: {
     TAXABLE: {
         CODE: string;
     };
+    TAX_TABLE_DATA: {
+        CODE: string;
+    };
 };
 export declare const shared: {
     errors: {
         UNEXPECTED_ERROR: (exception: any) => TaxCalculatorReturn;
     };
     return_values: {
+        TAX_BRACKET_DATA: ({ filePath, data, }: {
+            filePath: string;
+            data: TaxBracketBase;
+        }) => TaxCalculatorReturn;
         TAX_BRACKET_APPLIES: ({ TAX_BRACKET, annual_income, tax_payable_for_bracket }: {
             TAX_BRACKET: any;
             annual_income: number;
@@ -31,3 +38,4 @@ export declare const transform: {
         annual_amount: number;
     }) => number;
 };
+export declare const readTaxTableFromFile: (filePath: string) => TaxCalculatorReturn;

@@ -3,14 +3,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.au_fy2020_2021 = void 0;
 const helpers_1 = require("../../helpers");
 const au_fy2020_2021 = () => {
+    const taxTablesFromFile = helpers_1.readTaxTableFromFile('./tax_table.json');
     const data_sources = {
-        tax_tables: [
-            { desc: "0 to 20k", min: 0, max: 20000, tax_income_threshold: 0, after_threshold_tax_cents_per_dollar: 0 },
-            { desc: "20k to 40k", min: 20001, max: 40000, tax_income_threshold: 20000, after_threshold_tax_cents_per_dollar: 10 },
-            { desc: "40k to 80k", min: 40001, max: 80000, tax_income_threshold: 40000, after_threshold_tax_cents_per_dollar: 20 },
-            { desc: "80k to 180k", min: 80001, max: 20000, tax_income_threshold: 80000, after_threshold_tax_cents_per_dollar: 30 },
-            { desc: "over 180k", min: 180001, max: 20000, tax_income_threshold: 1800100, after_threshold_tax_cents_per_dollar: 40 },
-        ]
+        tax_tables: taxTablesFromFile.data
     };
     const BracketTaxCalculator = (annual_income, bracket) => {
         if (isNaN(annual_income)) {

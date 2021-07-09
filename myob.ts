@@ -7,10 +7,10 @@ const argv = yargs(hideBin(process.argv)).argv
 const employeeName = argv._[0];
 const annual_income = argv._[1];
 
-import {transform} from "./tax_calculators/helpers";
+import {transform} from './tax_calculators/helpers';
 
-import { au_fy2020_2021 }  from "./tax_calculators/au/2020_2021";
-import { Employee,  TaxCalculatorMethods, taxPayslip } from "./tax_calculators/types";
+import { au_fy2020_2021 }  from './tax_calculators/au/2020_2021';
+import { Employee,  TaxCalculatorMethods, taxPayslip } from './tax_calculators/types';
 
 
 export const income_calculators = {    
@@ -45,7 +45,7 @@ export const paySlipForEmployee = (employee:Employee, income_calculator:TaxCalcu
 }
 
 export const test_employee = {
-  name: "Mary Song",
+  name: 'Mary Song',
   annual_income: 60000,
 
   validate:{

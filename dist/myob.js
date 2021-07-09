@@ -35,7 +35,7 @@ const paySlipForEmployee = (employee, income_calculator) => {
 };
 exports.paySlipForEmployee = paySlipForEmployee;
 exports.test_employee = {
-    name: "Mary Song",
+    name: 'Mary Song',
     annual_income: 60000,
     validate: {
         gross_monthly_income: 5000,

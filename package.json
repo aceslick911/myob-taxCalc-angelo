@@ -5,9 +5,10 @@
   "main": "myob.js",
   "scripts": {
     "prebuild": "rimraf dist",
-    "build": "tsc && chmod +x dist/myob.js",    
+    "build": "tsc && chmod +x dist/myob.js",
+    "start": "./dist/myob.js \"Mary Song\" 60000",
     "test": "jest __tests__/ --no-watchman",
-    "lint": "eslint myob.ts"
+    "lint": "eslint"
   },
   "author": "Angelo Perera",
   "license": "ISC",
@@ -18,11 +19,12 @@
     "@typescript-eslint/eslint-plugin": "^4.13.0",
     "@typescript-eslint/parser": "^4.13.0",
     "eslint": "^7.17.0",
-    "eslint-config-prettier": "^7.1.0",
+    "eslint-config-prettier": "^7.2.0",
     "eslint-plugin-jest": "^24.3.6",
+    "eslint-plugin-prettier": "^3.4.0",
     "jest": "^27.0.6",
     "jest-nyancat-reporter": "^2.0.0",
-    "prettier": "^2.2.1",
+    "prettier": "^2.3.2",
     "rimraf": "^3.0.2",
     "ts-node": "^10.0.0",
     "typescript": "^4.3.5"

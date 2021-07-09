@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.transform = exports.shared = exports.RESULT_CONSTANTS = void 0;
+exports.readTaxTableFromFile = exports.transform = exports.shared = exports.RESULT_CONSTANTS = void 0;
 exports.RESULT_CONSTANTS = {
     ERROR: {
         CODE: "ERROR"
@@ -11,6 +11,9 @@ exports.RESULT_CONSTANTS = {
     TAXABLE: {
         CODE: "TAXABLE"
     },
+    TAX_TABLE_DATA: {
+        CODE: "TAX_TABLE_DATA"
+    }
 };
 exports.shared = {
     errors: {
@@ -21,6 +24,11 @@ exports.shared = {
         }),
     },
     return_values: {
+        TAX_BRACKET_DATA: ({ filePath, data, }) => ({
+            CODE: exports.RESULT_CONSTANTS.TAX_TABLE_DATA.CODE,
+            filePath,
+            data,
+        }),
         TAX_BRACKET_APPLIES: ({ TAX_BRACKET, annual_income, tax_payable_for_bracket }) => ({
             CODE: exports.RESULT_CONSTANTS.TAXABLE.CODE,
             BRACKET: TAX_BRACKET,
@@ -39,3 +47,17 @@ exports.transform = {
         return annual_amount / 12;
     },
 };
+const readTaxTableFromFile = (filePath) => {
+    try {
+        const fs = require('fs');
+        const data = fs.readFileSync(filePath, { encoding: 'utf8', flag: 'r' });
+        return exports.shared.return_values.TAX_BRACKET_DATA({
+            filePath,
+            data: JSON.parse(data)
+        });
+    }
+    catch (exception) {
+        return exports.shared.errors.UNEXPECTED_ERROR(`Error reading file: ${filePath} - ${exception}`);
+    }
+};
+exports.readTaxTableFromFile = readTaxTableFromFile;

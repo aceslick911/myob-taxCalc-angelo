@@ -20,12 +20,9 @@ export declare type taxPayslip = {
     monthly_income_tax: number;
     net_monthly_income: number;
 };
-export interface AU2020_201_TaxBracket {
+export interface TaxBracketBase {
     desc: string;
-    min: number;
-    max: number;
-    tax_income_threshold: number;
-    after_threshold_tax_cents_per_dollar: number;
+    [property: string]: number | string;
 }
 export interface TaxCalculatorReturn {
     CODE: ReturnCodes;
@@ -33,5 +30,6 @@ export interface TaxCalculatorReturn {
     DETAILS?: string;
     ANNUAL_TAX_PAYABLE?: number;
     BRACKET?: any;
-    [additionalMetadata: string]: string | number;
+    data?: object;
+    [additionalMetadata: string]: string | number | object;
 }

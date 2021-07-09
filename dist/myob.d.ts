@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { Employee, TaxCalculatorMethods, taxPayslip } from "./tax_calculators/types";
+import { Employee, TaxCalculatorMethods, taxPayslip } from './tax_calculators/types';
 export declare const income_calculators: {
     au: {
         fy2020_2021: {
