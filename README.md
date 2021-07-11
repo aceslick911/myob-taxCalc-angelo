@@ -1,13 +1,16 @@
 # MYOB Tech Test
+
 - Angelo Perera
 
 # Setup
-Requirements:
- - nodejs
- - yargs installed globally (npm i -g yargs)
 
+Requirements:
+
+- nodejs
+- yargs installed globally (npm i -g yargs)
 
 # How to run:
+
 ```sh
 npm i
 npm run build
@@ -15,8 +18,8 @@ npm run build
 
 ```
 
-
 # Lint
+
 ```sh
 npm run lint
 
@@ -25,7 +28,10 @@ npm run lint
 ```
 
 # Testing
+
 ```sh
+npm run test
+
 > myob@1.0.0 test
 > jest __tests__/ --no-watchman
 
@@ -45,15 +51,15 @@ npm run lint
       at Object.<anonymous> (__tests__/myob.test.ts:109:19)
 
 -----------------------------------|---------|----------|---------|---------|-------------------
-File                               | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+File                               | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
 -----------------------------------|---------|----------|---------|---------|-------------------
-All files                          |     100 |      100 |     100 |     100 |                   
- myob                              |     100 |      100 |     100 |     100 |                   
-  myob.js                          |     100 |      100 |     100 |     100 |                   
- myob/tax_calculators              |     100 |      100 |     100 |     100 |                   
-  helpers.ts                       |     100 |      100 |     100 |     100 |                   
- myob/tax_calculators/au/2020_2021 |     100 |      100 |     100 |     100 |                   
-  index.ts                         |     100 |      100 |     100 |     100 |                   
+All files                          |     100 |      100 |     100 |     100 |
+ myob                              |     100 |      100 |     100 |     100 |
+  myob.js                          |     100 |      100 |     100 |     100 |
+ myob/tax_calculators              |     100 |      100 |     100 |     100 |
+  helpers.ts                       |     100 |      100 |     100 |     100 |
+ myob/tax_calculators/au/2020_2021 |     100 |      100 |     100 |     100 |
+  index.ts                         |     100 |      100 |     100 |     100 |
 -----------------------------------|---------|----------|---------|---------|-------------------
 
 Test Suites: 3 passed, 3 total
@@ -63,8 +69,11 @@ Time:        2.328 s
 Ran all test suites matching /__tests__\//i.
 ```
 
-Example: If you change a value in __tests__/salaryVerificationTable.json (incorrect value detected for a expected tax value):
+Example: If you change a value in **tests**/salaryVerificationTable.json (incorrect value detected for a expected tax value):
+
 ```sh
+npm run test
+
  FAIL  __tests__/myob.test.ts
   ● Console
 
@@ -104,24 +113,25 @@ Example: If you change a value in __tests__/salaryVerificationTable.json (incorr
 
       at Object.<anonymous> (__tests__/myob.test.ts:107:38)
 -----------------------------------|---------|----------|---------|---------|-------------------
-File                               | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+File                               | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
 -----------------------------------|---------|----------|---------|---------|-------------------
-All files                          |     100 |      100 |     100 |     100 |                   
- myob                              |     100 |      100 |     100 |     100 |                   
-  myob.js                          |     100 |      100 |     100 |     100 |                   
- myob/tax_calculators              |     100 |      100 |     100 |     100 |                   
-  helpers.ts                       |     100 |      100 |     100 |     100 |                   
- myob/tax_calculators/au/2020_2021 |     100 |      100 |     100 |     100 |                   
-  index.ts                         |     100 |      100 |     100 |     100 |                   
+All files                          |     100 |      100 |     100 |     100 |
+ myob                              |     100 |      100 |     100 |     100 |
+  myob.js                          |     100 |      100 |     100 |     100 |
+ myob/tax_calculators              |     100 |      100 |     100 |     100 |
+  helpers.ts                       |     100 |      100 |     100 |     100 |
+ myob/tax_calculators/au/2020_2021 |     100 |      100 |     100 |     100 |
+  index.ts                         |     100 |      100 |     100 |     100 |
 -----------------------------------|---------|----------|---------|---------|-------------------
 Test Suites: 1 failed, 2 passed, 3 total
 Tests:       1 failed, 5 passed, 6 total
 Snapshots:   0 total
 Time:        4.385 s
-Ran all test suites matching /__tests__\//i.      
+Ran all test suites matching /__tests__\//i.
 ```
 
 # Output example
+
 ```sh
 
 > npm run build
