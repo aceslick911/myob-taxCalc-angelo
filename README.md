@@ -10,6 +10,7 @@ Requirements:
 - yargs installed globally (npm i -g yargs)
 - make (optional)
   - If you have make installed, you can run all these make commands: `make <command>` just run `make` to run all
+
 ```makefile
 
 install:
@@ -54,40 +55,57 @@ npm run lint
 npm run test
 
 > myob@1.0.0 test
-> jest __tests__/ --no-watchman
+> jest --config ./jest.config.ts
 
- PASS  __tests__/helpers.test.ts
- PASS  __tests__/au_2020_2021.test.ts
  PASS  __tests__/myob.test.ts
+ PASS  __tests__/helpers.test.ts
+ PASS  __tests__/au_common.test.ts
+ PASS  __tests__/au_2003_2004.test.ts
   ● Console
 
     console.log
       10000 table values verified for iterator 0
 
-      at Object.<anonymous> (__tests__/myob.test.ts:109:19)
+      at Object.<anonymous> (__tests__/au_2003_2004.test.ts:94:17)
 
     console.log
       19 table values verified for iterator 1
 
-      at Object.<anonymous> (__tests__/myob.test.ts:109:19)
+      at Object.<anonymous> (__tests__/au_2003_2004.test.ts:94:17)
 
------------------------------------|---------|----------|---------|---------|-------------------
-File                               | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
------------------------------------|---------|----------|---------|---------|-------------------
-All files                          |     100 |      100 |     100 |     100 |
- myob                              |     100 |      100 |     100 |     100 |
-  myob.js                          |     100 |      100 |     100 |     100 |
- myob/tax_calculators              |     100 |      100 |     100 |     100 |
-  helpers.ts                       |     100 |      100 |     100 |     100 |
- myob/tax_calculators/au/2020_2021 |     100 |      100 |     100 |     100 |
-  index.ts                         |     100 |      100 |     100 |     100 |
------------------------------------|---------|----------|---------|---------|-------------------
+ PASS  __tests__/au_2020_2021.test.ts
+  ● Console
 
-Test Suites: 3 passed, 3 total
-Tests:       6 passed, 6 total
+    console.log
+      10000 table values verified for iterator 0
+
+      at Object.<anonymous> (__tests__/au_2020_2021.test.ts:92:17)
+
+    console.log
+      19 table values verified for iterator 1
+
+      at Object.<anonymous> (__tests__/au_2020_2021.test.ts:92:17)
+
+-------------------------------|---------|----------|---------|---------|-------------------
+File                           | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
+-------------------------------|---------|----------|---------|---------|-------------------
+All files                      |     100 |    97.14 |     100 |     100 |
+ myob                          |     100 |    83.33 |     100 |     100 |
+  myob.ts                      |     100 |    83.33 |     100 |     100 | 66
+ myob/tax_calculators          |     100 |      100 |     100 |     100 |
+  helpers.ts                   |     100 |      100 |     100 |     100 |
+ myob/tax_calculators/au       |     100 |      100 |     100 |     100 |
+  common.ts                    |     100 |      100 |     100 |     100 |
+ ...x_calculators/au/2003_2004 |     100 |      100 |     100 |     100 |
+  index.ts                     |     100 |      100 |     100 |     100 |
+ ...x_calculators/au/2020_2021 |     100 |      100 |     100 |     100 |
+  index.ts                     |     100 |      100 |     100 |     100 |
+-------------------------------|---------|----------|---------|---------|-------------------
+
+Test Suites: 5 passed, 5 total
+Tests:       17 passed, 17 total
 Snapshots:   0 total
-Time:        2.328 s
-Ran all test suites matching /__tests__\//i.
+Time:        3.845 s
 ```
 
 Example: If you change a value in **tests**/salaryVerificationTable.json (incorrect value detected for a expected tax value):

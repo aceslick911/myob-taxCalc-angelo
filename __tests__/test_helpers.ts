@@ -1,6 +1,8 @@
-export const taxVerificationJSONFile = (taxCalcName:string) => `./__tests__/TAX_VERIF_${taxCalcName}.json`;
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+export const taxVerificationJSONFile = (taxCalcName:string):string => `./__tests__/TAX_VERIF_${taxCalcName}.json`;
 
-export const writeNewTaxVerificationTables = (taxCalcName:string, salariesToTest) => {
+export const writeNewTaxVerificationTables = (taxCalcName:string, salariesToTest:any):void => {
   delete salariesToTest.incrementors;
   const fs = require("fs");
   fs.writeFile(
