@@ -52,7 +52,6 @@ const pathToFile = (relativePathFromRoot) => {
     const isTesting = process.env.NODE_ENV === "test";
     const path = require("path");
     const relativePath = path.resolve(__dirname + (isTesting ? "/../" : "/../../") + relativePathFromRoot);
-    console.log("RESOLVED: ", relativePath);
     return relativePath;
 };
 exports.pathToFile = pathToFile;

@@ -8,12 +8,4 @@ export declare const income_calculators: {
     };
 };
 export declare const paySlipForEmployee: (employee: Employee, income_calculator: TaxCalculatorMethods) => taxPayslip;
-export declare const test_employee: {
-    name: string;
-    annual_income: number;
-    validate: {
-        gross_monthly_income: number;
-        monthly_income_tax: number;
-        net_monthly_income: number;
-    };
-};
+export declare const commandline_execution: () => void;

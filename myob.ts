@@ -2,10 +2,8 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const yargs = require('yargs/yargs')
 const { hideBin } = require('yargs/helpers')
-const argv = yargs(hideBin(process.argv)).argv
 
-const employeeName = argv._[0];
-const annual_income = argv._[1];
+const executeCommandLine = process.argv[2]!==undefined;
 
 import {DataTransforms} from './tax_calculators/helpers';
 
@@ -44,17 +42,6 @@ export const paySlipForEmployee = (employee:Employee, income_calculator:TaxCalcu
   return output;
 }
 
-export const test_employee = {
-  name: 'Mary Song',
-  annual_income: 60000,
-
-  validate:{
-    gross_monthly_income: 5000,
-    monthly_income_tax:500,
-    net_monthly_income: 4500,
-  }
-}
-
 const formattedOutput = (payslip:taxPayslip)=>{
   return `Monthly Payslip for: "${payslip.name }"
 Gross Monthly Income: $${payslip.gross_monthly_income}
@@ -62,13 +49,19 @@ Monthly Income Tax: $${payslip.monthly_income_tax}
 Net Monthly Income: $${payslip.net_monthly_income}`
 }
 
-if(employeeName!==undefined){
-  console.log(
-    formattedOutput(
-      paySlipForEmployee({
-        name: employeeName,
-        annual_income
-      }, income_calculators.au.fy2020_2021.CALC)
-    )
-  );
-}
+export const commandline_execution = ():void=>{
+  const argv = yargs(hideBin(process.argv)).argv
+  const employeeName = argv._[0];
+  const annual_income = argv._[1];  
+  if(isNaN(employeeName) && typeof employeeName === "string" && !isNaN(annual_income) )
+    console.log(
+      formattedOutput(
+        paySlipForEmployee({
+          name: employeeName,
+          annual_income
+        }, income_calculators.au.fy2020_2021.CALC)
+      )
+    );}
+
+// Run CLI commands if present
+executeCommandLine && commandline_execution();
