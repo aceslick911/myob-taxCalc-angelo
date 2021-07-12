@@ -1,4 +1,5 @@
 {
   "tabWidth": 2,
-  "prettier.tabWidth": 2
+  "prettier.tabWidth": 2,
+  "prefer-template": 2
 }

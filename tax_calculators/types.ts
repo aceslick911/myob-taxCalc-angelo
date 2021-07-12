@@ -6,7 +6,7 @@ export type TaxCalculatorMethods = {
   ANNUAL_INCOME_TAX: (annual_income: number, options?: {[calculatorOption:string]:any})=>number
 }
 
-export type TaxCalculator = ()=>{
+export type TaxCalculator = (isTesting:boolean)=>{
   CALC: TaxCalculatorMethods
   }
 

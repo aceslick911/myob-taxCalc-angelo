@@ -5,7 +5,7 @@ export declare type TaxCalculatorMethods = {
         [calculatorOption: string]: any;
     }) => number;
 };
-export declare type TaxCalculator = () => {
+export declare type TaxCalculator = (isTesting: boolean) => {
     CALC: TaxCalculatorMethods;
 };
 export declare type ReturnCodes = ValueOf<ValueOf<typeof RESULT_CONSTANTS>>;

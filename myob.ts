@@ -7,7 +7,7 @@ const argv = yargs(hideBin(process.argv)).argv
 const employeeName = argv._[0];
 const annual_income = argv._[1];
 
-import {transform} from './tax_calculators/helpers';
+import {DataTransforms} from './tax_calculators/helpers';
 
 import { au_fy2020_2021 }  from './tax_calculators/au/2020_2021';
 import { Employee,  TaxCalculatorMethods, taxPayslip } from './tax_calculators/types';
@@ -15,7 +15,7 @@ import { Employee,  TaxCalculatorMethods, taxPayslip } from './tax_calculators/t
 
 export const income_calculators = {    
   au:{
-    fy2020_2021: au_fy2020_2021()
+    fy2020_2021: au_fy2020_2021(process.env.NODE_ENV === 'test')
   }
 }
   
@@ -25,10 +25,10 @@ export const paySlipForEmployee = (employee:Employee, income_calculator:TaxCalcu
   const employee_annual_tax  = ANNUAL_INCOME_TAX(employee.annual_income);
 
 
-  const gross_monthly_income = transform.annual_amnt_to_monthly_amnt({
+  const gross_monthly_income = DataTransforms.annual_amnt_to_monthly_amnt({
     annual_amount: employee.annual_income
   });
-  const monthly_income_tax = transform.annual_amnt_to_monthly_amnt({
+  const monthly_income_tax = DataTransforms.annual_amnt_to_monthly_amnt({
     annual_amount: employee_annual_tax
   });
   
@@ -62,11 +62,13 @@ Monthly Income Tax: $${payslip.monthly_income_tax}
 Net Monthly Income: $${payslip.net_monthly_income}`
 }
 
-console.log(
-  formattedOutput(
-    paySlipForEmployee({
-      name: employeeName,
-      annual_income
-    }, income_calculators.au.fy2020_2021.CALC)
-  )
-);
+if(employeeName!==undefined){
+  console.log(
+    formattedOutput(
+      paySlipForEmployee({
+        name: employeeName,
+        annual_income
+      }, income_calculators.au.fy2020_2021.CALC)
+    )
+  );
+}
