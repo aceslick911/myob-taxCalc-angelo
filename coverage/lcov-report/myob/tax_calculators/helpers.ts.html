@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">96.26% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>103/107</span>
+                <span class='fraction'>107/107</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">75% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>6/8</span>
+                <span class='fraction'>9/9</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">96.26% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>103/107</span>
+                <span class='fraction'>107/107</span>
             </div>
         
             
@@ -241,36 +241,36 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { TaxBracketBase, TaxCalculatorReturn } from "./types";
 &nbsp;
 export const RESULT_CONSTANTS = {
@@ -351,7 +351,7 @@ export const pathToFile = (relativePathFromRoot: string): string =&gt; {
   const isTesting = process.env.NODE_ENV === "test";
   const path = require("path");
   const relativePath = path.resolve(
-    __dirname + (isTesting<span class="branch-0 cbranch-no" title="branch not covered" > ? "/../" : "/../../") + r</span>elativePathFromRoot
+    __dirname + (isTesting ? "/../" : "/../../") + relativePathFromRoot
   );
   return relativePath;
 };
@@ -372,11 +372,11 @@ export const readTaxTableFromFile = (
       filePath: relativePathFromRoot,
       data: JSON.parse(data),
     });
-  } <span class="branch-0 cbranch-no" title="branch not covered" >catch (exception) {</span>
-<span class="cstat-no" title="statement not covered" >    return shared.errors.UNEXPECTED_ERROR(</span>
-<span class="cstat-no" title="statement not covered" >      `Error reading file: ${relativePathFromRoot} - ${exception}`</span>
-<span class="cstat-no" title="statement not covered" >    );</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
+  } catch (exception) {
+    return shared.errors.UNEXPECTED_ERROR(
+      `Error reading file: ${relativePathFromRoot} - ${exception}`
+    );
+  }
 };
 &nbsp;</pre></td></tr></table></pre>
 
@@ -385,7 +385,7 @@ export const readTaxTableFromFile = (
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Mon Jul 12 2021 12:33:22 GMT+1000 (Australian Eastern Standard Time)
+                at Mon Jul 12 2021 12:41:16 GMT+1000 (Australian Eastern Standard Time)
             </div>
         </div>
         <script src="../../prettify.js"></script>
