@@ -15,7 +15,7 @@ describe("helpers", () => {
   });
   it("pathToFile should have non-test folder when not-testing", () => {
     process.env.NODE_ENV = "";
-    expect(pathToFile("test")).toEqual( require("path").resolve(__dirname + "/../../test"));
+    expect(pathToFile("test")).toEqual( require("path").resolve(`${__dirname  }/../../test`));
     process.env.NODE_ENV = "test";
   });
   it("readTaxTableFromFile should throw if invalid file path given", () => {

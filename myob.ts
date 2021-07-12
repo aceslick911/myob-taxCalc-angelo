@@ -19,9 +19,8 @@ export const income_calculators = {
   
 export const paySlipForEmployee = (employee:Employee, income_calculator:TaxCalculatorMethods):taxPayslip =>{
 
-  const {ANNUAL_INCOME_TAX} = income_calculator;
-  const employee_annual_tax  = ANNUAL_INCOME_TAX(employee.annual_income);
-
+  const {ANNUAL_INCOME_TAX, BRACKET_TAX_CALCULATOR, DATA_SOURCES} = income_calculator;
+  const employee_annual_tax  = ANNUAL_INCOME_TAX(employee.annual_income, DATA_SOURCES, BRACKET_TAX_CALCULATOR);
 
   const gross_monthly_income = DataTransforms.annual_amnt_to_monthly_amnt({
     annual_amount: employee.annual_income

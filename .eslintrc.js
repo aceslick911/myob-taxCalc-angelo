@@ -13,15 +13,16 @@ module.exports = {
     jest: true,
   },
   rules: {
-    indent: ["warn", 2, { SwitchCase: 1 }],
+    indent: ["error", 2, { SwitchCase: 1 }],
     "@typescript-eslint/no-var-requires": 0,
 
-    // "@typescript-eslint/ban-types": 0,
-    // "@typescript-eslint/no-explicit-any": 0,
-    // "@typescript-eslint/no-unused-vars": 0,
-    // "no-empty": 0,
-    // "@typescript-eslint/explicit-module-boundary-types": "off",
-    // "react/prop-types": "off",
-    // "no-case-declarations": 0,
+    "@typescript-eslint/ban-types": 1,
+    "@typescript-eslint/no-explicit-any": 1,
+    "@typescript-eslint/no-unused-vars": 1,
+    "no-empty": 1,
+    "@typescript-eslint/explicit-module-boundary-types": 1,
+    "no-case-declarations": 1,
+
+    "prefer-template": 1,
   },
 };

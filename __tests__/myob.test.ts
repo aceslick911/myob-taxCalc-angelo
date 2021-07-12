@@ -1,8 +1,6 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 const TEST_MODE: "TEST" | "WRITE_NEW_TAX_VERIFICATION_TABLES" = "TEST";
 import { income_calculators, paySlipForEmployee, commandline_execution } from "../myob";
-
-import * as myob from "../myob";
-
 
 const taxVerificationJSONFile = "./__tests__/salaryVerificationTable.json";
 const writeNewTaxVerificationTables = (salariesToTest) => {
@@ -12,12 +10,13 @@ const writeNewTaxVerificationTables = (salariesToTest) => {
     taxVerificationJSONFile,
     JSON.stringify(salariesToTest, null, 0),
     "utf8",
-    (done) => {
+    () => {
       console.log("NEW DATA WRITTEN");
     }
   );
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const readExistingTaxVerificationTables: () => Promise<any> = () =>
   new Promise((resolve, reject) => {
     const fs = require("fs");
