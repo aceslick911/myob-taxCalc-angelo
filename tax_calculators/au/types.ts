@@ -7,11 +7,11 @@ export interface AUTaxBracket extends TaxBracketBase {
   tax_income_threshold: number, 
   after_threshold_tax_cents_per_dollar: number }
 
-export type TaxBracketFile = AUTaxBracket[];
+export type TaxBracketFile<Bracket> = Bracket[];
 
 
-export type DataSources =    {
-  tax_tables: TaxBracketFile,
+export type DataSource<Bracket> =    {
+  tax_tables: TaxBracketFile<Bracket>,
 };
 
 export type  BracketTaxCalculatorMethod = (

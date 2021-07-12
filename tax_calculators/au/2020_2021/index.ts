@@ -5,15 +5,15 @@ import {
 import {AnnualIncomeTaxCalculator, BracketTaxCalculator} from '../common'
 
 import { TaxCalculator } from "../../types";
-import { DataSources, TaxBracketFile } from "../types";
+import { AUTaxBracket,  DataSource,  TaxBracketFile } from "../types";
 
 export const au_fy2020_2021: TaxCalculator = () => {
   const taxTablesFromFile = readTaxTableFromFile(
     "tax_calculators/au/2020_2021/tax_table.json"
   );
 
-  const data_sources:DataSources = {
-    tax_tables: taxTablesFromFile.data as TaxBracketFile,
+  const data_sources:DataSource<AUTaxBracket> = {
+    tax_tables: taxTablesFromFile.data as TaxBracketFile<AUTaxBracket>,
   };
 
   return {

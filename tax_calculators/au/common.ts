@@ -1,9 +1,9 @@
 import { RESULT_CONSTANTS, shared } from "../helpers";
 import { ANNUAL_INCOME, TaxCalculatorReturn } from "../types";
-import { AUTaxBracket, BracketTaxCalculatorMethod, DataSources,  } from "./types";
+import { AUTaxBracket, BracketTaxCalculatorMethod, DataSource,   } from "./types";
 
 
-export const AnnualIncomeTaxCalculator = (annual_income:number, data_sources:DataSources, BracketTaxCalculator:BracketTaxCalculatorMethod):number => {
+export const AnnualIncomeTaxCalculator = (annual_income:number, data_sources:DataSource<AUTaxBracket>, BracketTaxCalculator:BracketTaxCalculatorMethod):number => {
   const taxPaidByBracket = data_sources.tax_tables.map((bracket) =>
     BracketTaxCalculator(annual_income, bracket)
   );

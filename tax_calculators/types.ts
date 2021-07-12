@@ -1,13 +1,13 @@
 import { ValueOf } from "type-fest";
-import { BracketTaxCalculatorMethod, DataSources } from "./au/types";
+import { BracketTaxCalculatorMethod, DataSource } from "./au/types";
 import { RESULT_CONSTANTS } from "./helpers"
 
 export type TaxCalculatorMethods = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  ANNUAL_INCOME_TAX: (annual_income:number, data_sources:DataSources, BracketTaxCalculator:BracketTaxCalculatorMethod)=>number;
+  ANNUAL_INCOME_TAX: (annual_income:number, data_sources:DataSource<TaxBracketBase>, BracketTaxCalculator:BracketTaxCalculatorMethod)=>number;
 
   BRACKET_TAX_CALCULATOR: BracketTaxCalculatorMethod;
-  DATA_SOURCES: DataSources;
+  DATA_SOURCES: DataSource<TaxBracketBase>;
 }
 
 export type TaxCalculator = (isTesting:boolean)=>{

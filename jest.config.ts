@@ -6,7 +6,13 @@
 export default {
   // All imported modules in your tests should be mocked automatically
   // automock: false,
-
+  globals: {
+    'ts-jest': {
+      tsConfig: {
+        importHelpers: true
+      }
+    }
+  },
   // Stop running tests after `n` failures
   // bail: 0,
 

@@ -1,0 +1,42 @@
+[
+  {
+    "desc": "0 to 6k",
+    "min": 0,
+    "max": 20000,
+    "static_tax_amount": 0,
+    "tax_income_threshold": 0,
+    "after_threshold_tax_cents_per_dollar": 0
+  },
+  {
+    "desc": "6k to 21k",
+    "min": 20001,
+    "max": 40000,
+    "static_tax_amount": 0,
+    "tax_income_threshold": 20000,
+    "after_threshold_tax_cents_per_dollar": 17
+  },
+  {
+    "desc": "21k to 52k",
+    "min": 40001,
+    "max": 80000,
+    "static_tax_amount": 2652,
+    "tax_income_threshold": 40000,
+    "after_threshold_tax_cents_per_dollar": 30
+  },
+  {
+    "desc": "52k to 62500",
+    "min": 80001,
+    "max": 20000,
+    "static_tax_amount": 11772,
+    "tax_income_threshold": 80000,
+    "after_threshold_tax_cents_per_dollar": 42
+  },
+  {
+    "desc": "62500 up",
+    "min": 180001,
+    "max": null,
+    "static_tax_amount": 16182,
+    "tax_income_threshold": 1800100,
+    "after_threshold_tax_cents_per_dollar": 47
+  }
+]

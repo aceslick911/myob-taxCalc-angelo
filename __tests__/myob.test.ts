@@ -2,12 +2,13 @@
 const TEST_MODE: "TEST" | "WRITE_NEW_TAX_VERIFICATION_TABLES" = "TEST";
 import { income_calculators, paySlipForEmployee, commandline_execution } from "../myob";
 
-const taxVerificationJSONFile = "./__tests__/salaryVerificationTable.json";
-const writeNewTaxVerificationTables = (salariesToTest) => {
+const taxVerificationJSONFile = (taxCalcName:string) => `./__tests__/TAX_VERIF_${taxCalcName}.json`;
+
+const writeNewTaxVerificationTables = (taxCalcName:string, salariesToTest) => {
   delete salariesToTest.incrementors;
   const fs = require("fs");
   fs.writeFile(
-    taxVerificationJSONFile,
+    taxVerificationJSONFile(taxCalcName),
     JSON.stringify(salariesToTest, null, 0),
     "utf8",
     () => {
@@ -17,11 +18,11 @@ const writeNewTaxVerificationTables = (salariesToTest) => {
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const readExistingTaxVerificationTables: () => Promise<any> = () =>
+const readExistingTaxVerificationTables: (taxCalcName:string) => Promise<any> = (taxCalcName:string) =>
   new Promise((resolve, reject) => {
     const fs = require("fs");
 
-    fs.readFile(taxVerificationJSONFile, "utf8", (err, data) => {
+    fs.readFile(taxVerificationJSONFile(taxCalcName), "utf8", (err, data) => {
       if (err) {
         reject(`Error reading file from disk: ${err}`);
       } else {
@@ -29,138 +30,142 @@ const readExistingTaxVerificationTables: () => Promise<any> = () =>
         resolve(JSON.parse(data));
       }
     });
+
   });
 
 describe("myob", () => {
-  it("Should pass for example case 'Mary Song' with 60k annual salary", () => {
-    const test_employee = {
-      name: "Mary Song",
-      annual_income: 60000,
+  describe("au_fy2020_2021", () => {
+    const taxCalcName = "au_fy2020_2021";
+    it("Should pass for example case 'Mary Song' with 60k annual salary", () => {
+      const test_employee = {
+        name: "Mary Song",
+        annual_income: 60000,
 
-      validate: {
+        validate: {
+          gross_monthly_income: 5000,
+          monthly_income_tax: 500,
+          net_monthly_income: 4500,
+        },
+      };
+
+      expect(
+        paySlipForEmployee(test_employee, income_calculators.au.fy2020_2021.CALC)
+      ).toEqual({
+        name: "Mary Song",
         gross_monthly_income: 5000,
         monthly_income_tax: 500,
         net_monthly_income: 4500,
-      },
-    };
-
-    expect(
-      paySlipForEmployee(test_employee, income_calculators.au.fy2020_2021.CALC)
-    ).toEqual({
-      name: "Mary Song",
-      gross_monthly_income: 5000,
-      monthly_income_tax: 500,
-      net_monthly_income: 4500,
+      });
     });
-  });
 
-  it("Should run not commandline_execution if invalid",()=>{
+    it("Should run not commandline_execution if invalid",()=>{
 
 
-    const args= [
+      const args= [
      
-    ]
-    process.argv = process.argv.concat(args);
+      ]
+      process.argv = process.argv.concat(args);
 
-    const log = jest.spyOn(console, "log").mockImplementation(() => {});
+      const log = jest.spyOn(console, "log").mockImplementation(() => {});
         
 
-    commandline_execution();
-    expect(log).not.toBeCalled();
-  });
-  it("Should output calculations from commandline",()=>{
+      commandline_execution();
+      expect(log).not.toBeCalled();
+    });
+    it("Should output calculations from commandline",()=>{
    
-    /* eslint-disable @typescript-eslint/no-var-requires */
-    const args= [
-      'Mary Song',
-      '60000'
-    ]
-    process.argv = process.argv.concat(args);
+      /* eslint-disable @typescript-eslint/no-var-requires */
+      const args= [
+        'Mary Song',
+        '60000'
+      ]
+      process.argv = process.argv.concat(args);
 
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    const log = jest.spyOn(console, "log").mockImplementation(() => {});
+      // eslint-disable-next-line @typescript-eslint/no-empty-function
+      const log = jest.spyOn(console, "log").mockImplementation(() => {});
 
-    const expectedOut = `Monthly Payslip for: "Mary Song"
+      const expectedOut = `Monthly Payslip for: "Mary Song"
 Gross Monthly Income: $5000
 Monthly Income Tax: $500
 Net Monthly Income: $4500`;
 
-    commandline_execution();
-    expect(log).toBeCalledWith(expectedOut);
+      commandline_execution();
+      expect(log).toBeCalledWith(expectedOut);
     
 
-  })
+    })
 
-  describe("Test against pre-generated tables", () => {
-    const salariesToTest = {
-      salaries: [],
-      net_monthly_incomes: [],
-      startSal: 0,
-      maxSal: 1000000,
-      incrementors: [
-        (last: number) => last + 100,
-        (last: number) => (last + 1) * 2,
-      ],
-    };
+    describe("Test against pre-generated tables", () => {
+      const salariesToTest = {
+        salaries: [],
+        net_monthly_incomes: [],
+        startSal: 0,
+        maxSal: 1000000,
+        incrementors: [
+          (last: number) => last + 100,
+          (last: number) => (last + 1) * 2,
+        ],
+      };
 
-    salariesToTest.incrementors.forEach((incrementorFn, index) => {
-      let annual_income = salariesToTest.startSal;
-      const salaries = [];
-      const net_monthly_incomes = [];
-      while (annual_income < salariesToTest.maxSal) {
-        salaries.push(annual_income);
-        annual_income = incrementorFn(annual_income);
+      salariesToTest.incrementors.forEach((incrementorFn, index) => {
+        let annual_income = salariesToTest.startSal;
+        const salaries = [];
+        const net_monthly_incomes = [];
+        while (annual_income < salariesToTest.maxSal) {
+          salaries.push(annual_income);
+          annual_income = incrementorFn(annual_income);
 
-        const { net_monthly_income } = paySlipForEmployee(
-          {
-            name: "",
-            annual_income,
-          },
-          income_calculators.au.fy2020_2021.CALC
-        );
+          const { net_monthly_income } = paySlipForEmployee(
+            {
+              name: "",
+              annual_income,
+            },
+            income_calculators.au.fy2020_2021.CALC
+          );
 
-        net_monthly_incomes.push(net_monthly_income);
+          net_monthly_incomes.push(net_monthly_income);
 
-        if (
-          isNaN(annual_income) ||
+          if (
+            isNaN(annual_income) ||
           (salaries.length > 1 &&
             salaries[salaries.length - 1] <= salaries[salaries.length - 2])
-        ) {
-          throw new Error(
-            `Incrementor ${
-              index + 1
-            } did not increment it's value on iteration - ${
-              salaries[salaries.length - 1]
-            } - ${salaries[salaries.length - 2]}`
-          );
-        }
-      }
-      salariesToTest.salaries.push(salaries);
-      salariesToTest.net_monthly_incomes.push(net_monthly_incomes);
-    });
-
-    let comparisonTables;
-
-    let initialized = false;
-
-    salariesToTest.net_monthly_incomes.forEach((net_monthly_income, index) => {
-      it(`Iterator ${index}`, async () => {
-        if (initialized === false) {
-          if (TEST_MODE === "TEST") {
-            comparisonTables = await readExistingTaxVerificationTables();
-          } else {
-            writeNewTaxVerificationTables(salariesToTest);
+          ) {
+            throw new Error(
+              `Incrementor ${
+                index + 1
+              } did not increment it's value on iteration - ${
+                salaries[salaries.length - 1]
+              } - ${salaries[salaries.length - 2]}`
+            );
           }
-          initialized = true;
         }
+        salariesToTest.salaries.push(salaries);
+        salariesToTest.net_monthly_incomes.push(net_monthly_incomes);
+      });
 
-        expect(net_monthly_income).toEqual(
-          comparisonTables.net_monthly_incomes[index]
-        );
+      let comparisonTables;
 
-        console.log(
-          `${net_monthly_income.length} table values verified for iterator ${index}`
-        );
+      let initialized = false;
+
+      salariesToTest.net_monthly_incomes.forEach((net_monthly_income, index) => {
+        it(`Iterator ${index}`, async () => {
+          if (initialized === false) {
+            if (TEST_MODE === "TEST") {
+              comparisonTables = await readExistingTaxVerificationTables(taxCalcName);
+            } else {
+              writeNewTaxVerificationTables(taxCalcName, salariesToTest);
+            }
+            initialized = true;
+          }
+
+          expect(net_monthly_income).toEqual(
+            comparisonTables.net_monthly_incomes[index]
+          );
+
+          console.log(
+            `${net_monthly_income.length} table values verified for iterator ${index}`
+          );
+        });
       });
     });
   });
