@@ -5,7 +5,7 @@
   "main": "myob.js",
   "scripts": {
     "prebuild": "rimraf dist && npm run copy",
-    "copy": "copyfiles -a -F -e \"**/*.ts\" \"./tax_calculators/**/*.*\" ./dist",
+    "copy": "copyfiles -a -F -e \"./tax_calculators/**/*.ts\" \"./tax_calculators/**/*.*\" ./dist",
     "build": "tsc ./myob.ts --outDir ./dist/ && chmod +x dist/myob.js",
     "start": "./dist/myob.js \"Mary Song\" 60000",
     "test": "jest __tests__/ --no-watchman",
