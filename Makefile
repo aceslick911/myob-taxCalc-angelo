@@ -1,3 +1,4 @@
+.DEFAULT_GOAL := all
 .PHONY: all
 
 install:
@@ -14,6 +15,5 @@ build: install
 
 run: build
 	./dist/myob.js "Mary Song" 60000
-
 
 all: build test run

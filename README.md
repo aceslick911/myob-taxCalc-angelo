@@ -8,6 +8,27 @@ Requirements:
 
 - nodejs
 - yargs installed globally (npm i -g yargs)
+- make (optional)
+  - If you have make installed, you can run all these make commands: `make <command>` just run `make` to run all
+```makefile
+
+install:
+	npm i
+
+lint:
+	npm run lint
+
+test: lint
+	npm run test
+
+build: install
+	npm run build
+
+run: build
+	./dist/myob.js "Mary Song" 60000
+
+all: build test run
+```
 
 # How to run:
 

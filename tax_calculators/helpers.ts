@@ -69,7 +69,12 @@ export const  transform={
  
 export const readTaxTableFromFile= (filePath:string):TaxCalculatorReturn=>{
   try{
-    const fs = require('fs');   
+    const fs = require('fs');
+    const path = require('path');
+
+    const resolvedPath = path.resolve(filePath);
+    console.log("RESOLVED: ",resolvedPath)
+
     const data = fs.readFileSync(filePath,
       {encoding:'utf8', flag:'r'});
                 

@@ -3,7 +3,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.au_fy2020_2021 = void 0;
 const helpers_1 = require("../../helpers");
 const au_fy2020_2021 = () => {
-    const taxTablesFromFile = helpers_1.readTaxTableFromFile('./tax_table.json');
+    const path = require('path');
+    const resolvedPath = path.resolve(__dirname + '/tax_table.json');
+    const taxTablesFromFile = helpers_1.readTaxTableFromFile(resolvedPath);
     const data_sources = {
         tax_tables: taxTablesFromFile.data
     };

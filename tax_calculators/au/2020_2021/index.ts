@@ -4,8 +4,10 @@ import { TaxCalculator, ANNUAL_INCOME, TaxCalculatorReturn } from "../../types";
 import { TaxBracketFile } from "./types";
 
 export const au_fy2020_2021: TaxCalculator = () => {
+  const path = require('path');
 
-  const taxTablesFromFile = readTaxTableFromFile('./tax_table.json');
+  const resolvedPath = path.resolve(__dirname+'/tax_table.json');
+  const taxTablesFromFile = readTaxTableFromFile(resolvedPath);
 
   const data_sources = {
     tax_tables: taxTablesFromFile.data as TaxBracketFile
