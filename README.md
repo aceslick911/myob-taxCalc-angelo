@@ -188,3 +188,12 @@ Gross Monthly Income: $5000
 Monthly Income Tax: $500
 Net Monthly Income: $4500
 ```
+
+Additional -
+You can find these files in the `__test__` folder to verify the monthly tax withheld values:
+`npm run csv-gen`
+
+> TAX_VERIF_au_fy2003_2004.csv
+> TAX_VERIF_au_fy2003_2004.json
+> TAX_VERIF_au_fy2020_2021.csv
+> TAX_VERIF_au_fy2020_2021.json
