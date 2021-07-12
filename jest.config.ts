@@ -20,7 +20,7 @@ export default {
   // cacheDirectory: "/private/var/folders/6f/9b2r3bk57f19h3jkg5nx2kb40000gn/T/jest_dx",
 
   // Automatically clear mock calls and instances between every test
-  clearMocks: true,
+  clearMocks: false,
 
   // Indicates whether the coverage information should be collected while executing the test
   collectCoverage: true,
@@ -160,7 +160,7 @@ export default {
   // testPathIgnorePatterns: [
   //   "test_helpers.ts"
   // ],
-  collectCoverageFrom: ['!myob/__tests__/test_helpers.ts', 'myob.ts', 'tax_calculators/**/*.ts', '!tax_calculators/**/*types*.ts'],
+  collectCoverageFrom: [ 'myob.ts', 'tax_calculators/**/*.ts', '!tax_calculators/**/*types*.ts', '!myob/__tests__/test_helpers.ts'],
 
   // The regexp pattern or array of patterns that Jest uses to detect test files
   // testRegex: [],

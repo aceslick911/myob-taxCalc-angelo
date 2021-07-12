@@ -9,7 +9,8 @@
     "build": "tsc ./index.ts --outDir ./dist/ && chmod +x dist/myob.js",
     "start": "./dist/myob.js \"Mary Song\" 60000",
     "test": "jest --config ./jest.config.ts",
-    "lint": "eslint --fix"
+    "lint": "eslint --fix",
+    "gen-csv": "json2csv -i __tests__/TAX_VERIF_au_fy2003_2004._csv.json -o __tests__/TAX_VERIF_au_fy2003_2004.csv && json2csv -i __tests__/TAX_VERIF_au_fy2020_2021._csv.json -o __tests__/TAX_VERIF_au_fy2020_2021.csv"
   },
   "author": "Angelo Perera",
   "license": "ISC",
@@ -32,6 +33,7 @@
   },
   "dependencies": {
     "copyfiles": "^2.4.1",
+    "json2csv": "^5.0.6",
     "typescript": "^4.3.5",
     "yargs": "^17.0.1"
   }

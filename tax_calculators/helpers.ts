@@ -87,21 +87,17 @@ export const pathToFile = (relativePathFromRoot: string): string => {
 export const readTaxTableFromFile = (
   relativePathFromRoot: string
 ): TaxCalculatorReturn => {
-  try {
-    const fs = require("fs");
 
-    const data = fs.readFileSync(pathToFile(relativePathFromRoot), {
-      encoding: "utf8",
-      flag: "r",
-    });
+  const fs = require("fs");
 
-    return shared.return_values.TAX_BRACKET_DATA({
-      filePath: relativePathFromRoot,
-      data: JSON.parse(data),
-    });
-  } catch (exception) {
-    return shared.errors.UNEXPECTED_ERROR(
-      `Error reading file: ${relativePathFromRoot} - ${exception}`
-    );
-  }
+  const data = fs.readFileSync(pathToFile(relativePathFromRoot), {
+    encoding: "utf8",
+    flag: "r",
+  });
+
+  return shared.return_values.TAX_BRACKET_DATA({
+    filePath: relativePathFromRoot,
+    data: JSON.parse(data),
+  });
+
 };
