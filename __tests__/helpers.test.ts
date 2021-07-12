@@ -23,7 +23,7 @@ describe("helpers", () => {
       CODE: "ERROR",
       DESC: "An unexpected calculation error occured",
       DETAILS:
-        "Error reading file: NO_FILE - Error: ENOENT: no such file or directory, open '/Users/angeloperera/git/myob/NO_FILE'",
+        `Error reading file: NO_FILE - Error: ENOENT: no such file or directory, open '${require("path").resolve(`${__dirname  }/../../myob`)}/NO_FILE'`,
     });
   });
 });

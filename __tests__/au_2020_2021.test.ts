@@ -1,4 +1,5 @@
 
+// Change this to WRITE or READ the tests validation JSON files
 const TEST_MODE: "TEST" | "WRITE_NEW_TAX_VERIFICATION_TABLES" = "TEST";
 
 import { au_fy2020_2021 } from "../tax_calculators/au/2020_2021";
