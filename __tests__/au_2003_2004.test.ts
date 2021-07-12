@@ -4,37 +4,9 @@ const TEST_MODE: "TEST" | "WRITE_NEW_TAX_VERIFICATION_TABLES" = "TEST";
 
 import { au_fy2003_2004 } from "../tax_calculators/au/2003_2004";
 import { paySlipForEmployee } from "../myob";
+import { readExistingTaxVerificationTables, writeNewTaxVerificationTables } from "./test_helpers";
 
-const taxVerificationJSONFile = (taxCalcName:string) => `./__tests__/TAX_VERIF_${taxCalcName}.json`;
 
-const writeNewTaxVerificationTables = (taxCalcName:string, salariesToTest) => {
-  delete salariesToTest.incrementors;
-  const fs = require("fs");
-  fs.writeFile(
-    taxVerificationJSONFile(taxCalcName),
-    JSON.stringify(salariesToTest, null, 0),
-    "utf8",
-    () => {
-      console.log("NEW DATA WRITTEN");
-    }
-  );
-};
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const readExistingTaxVerificationTables: (taxCalcName:string) => Promise<any> = (taxCalcName:string) =>
-  new Promise((resolve, reject) => {
-    const fs = require("fs");
-
-    fs.readFile(taxVerificationJSONFile(taxCalcName), "utf8", (err, data) => {
-      if (err) {
-        reject(`Error reading file from disk: ${err}`);
-      } else {
-        // parse JSON string to JSON object
-        resolve(JSON.parse(data));
-      }
-    });
-
-  });
 
 describe("Australian Tax tables 2003-2004", () => {
   const taxCalcName = "au_fy2003_2004";

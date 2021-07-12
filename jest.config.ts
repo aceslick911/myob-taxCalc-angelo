@@ -158,8 +158,9 @@ export default {
 
   // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
   // testPathIgnorePatterns: [
-  //   "/node_modules/"
+  //   "test_helpers.ts"
   // ],
+  collectCoverageFrom: ['!myob/__tests__/test_helpers.ts', 'myob.ts', 'tax_calculators/**/*.ts', '!tax_calculators/**/*types*.ts'],
 
   // The regexp pattern or array of patterns that Jest uses to detect test files
   // testRegex: [],
@@ -195,5 +196,5 @@ export default {
   // watchPathIgnorePatterns: [],
 
   // Whether to use watchman for file crawling
-  // watchman: true,
+  watchman: false,
 };

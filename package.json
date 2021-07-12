@@ -8,7 +8,7 @@
     "copy": "copyfiles -a -F -e \"./tax_calculators/**/*.ts\" \"./tax_calculators/**/*.*\" ./dist",
     "build": "tsc ./index.ts --outDir ./dist/ && chmod +x dist/myob.js",
     "start": "./dist/myob.js \"Mary Song\" 60000",
-    "test": "jest __tests__/ --no-watchman",
+    "test": "jest --config ./jest.config.ts",
     "lint": "eslint --fix"
   },
   "author": "Angelo Perera",
